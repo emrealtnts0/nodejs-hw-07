@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import contactsRouter from './routers/contacts.js';
 import authRouter from './routers/auth.js';
+import apiDocsRouter from './routes/api-docs.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
@@ -42,6 +43,7 @@ export const startServer = () => {
   // API Routes
   app.use('/api/contacts', contactsRouter);
   app.use('/api/auth', authRouter);
+  app.use('/api-docs', apiDocsRouter);
 
   // 404 Handler
   app.use(notFoundHandler);
