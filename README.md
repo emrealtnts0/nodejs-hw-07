@@ -22,35 +22,33 @@
   <img src="https://img.shields.io/badge/YAML-CB171E?style=for-the-badge&logo=yaml&logoColor=white" alt="YAML">
 </p>
 
-## 🎯 Task: API Documentation with Swagger/OpenAPI
+## Project Overview
 
-This project focuses on implementing comprehensive API documentation using Swagger/OpenAPI for an existing Node.js Express application. The goal is to enhance API clarity and ease of use through well-structured and interactive documentation.
+This repository demonstrates the implementation of comprehensive API documentation for a Node.js Express application using Swagger/OpenAPI. The primary goal is to provide well-structured, interactive, and informative documentation to enhance API clarity and usability.
 
-### Learning Objectives:
+## Key Features & Implementations
 
-*   Setting up basic documentation configurations in Swagger.
-*   Utilizing the `@redocly/cli` package for documentation generation.
-*   Organizing and configuring API documentation.
-*   Adding documentation for various API endpoints.
+This project includes the following key aspects of API documentation:
 
-### Acceptance Criteria:
+*   **Basic Swagger/OpenAPI Configuration**: Essential settings for API documentation.
+*   **Documentation Generation with `@redocly/cli`**: Tools for building and previewing API docs.
+*   **Organized Documentation Structure**: A systematic approach to organizing API endpoint definitions and components.
+*   **Endpoint Documentation**: Detailed documentation for various API endpoints, including parameters, responses, and security.
+*   **Swagger UI Integration**: Serving interactive API documentation via a dedicated route (`/api-docs`).
+*   **Error-Free Documentation Scripts**: Ensuring smooth execution of documentation-related commands.
+*   **Adherence to File Structure**: Following a well-defined application file structure for documentation.
 
-*   The task must be completed on the `hw7-swagger` branch.
-*   Homework submission must include links on GitHub to source files and the deployed project (on `hw7-swagger` branch) via render.com.
-*   No errors should occur when running the task code.
-*   Adherence to the application file structure specified in the course materials.
+## Getting Started: API Documentation
 
-## 🚀 Step-by-Step Task Implementation:
+To work with or generate the API documentation, follow these steps:
 
-### Step 1: Branch Creation
-Create the `hw7-swagger` branch from `hw6-email-and-images` and perform this task on the `hw7-swagger` branch.
+### 1. Setup the Documentation Environment
 
-### Step 2: Documentation Setup
-1.  Install `@redocly/cli` as a Dev dependency:
+1.  **Install `@redocly/cli`**: Install as a development dependency.
     ```bash
     npm install @redocly/cli --save-dev
     ```
-2.  Add new scripts to the `scripts` section in `package.json`:
+2.  **Configure `package.json` Scripts**: Add the following commands to your `package.json` file.
     ```json
     {
       "scripts": {
@@ -60,7 +58,7 @@ Create the `hw7-swagger` branch from `hw6-email-and-images` and perform this tas
       }
     }
     ```
-3.  Create `redocly.yaml` file with the following content:
+3.  **Create `redocly.yaml`**: Create this file in your project root with the following configuration.
     ```yaml
     # See <https://redocly.com/docs/cli/configuration/> for more information.
     apis:
@@ -81,7 +79,7 @@ Create the `hw7-swagger` branch from `hw6-email-and-images` and perform this tas
           - lang: Node.js
           - lang: JavaScript
     ```
-4.  Create a `docs` folder in the project root, and inside it, create `index.html` with the following content:
+4.  **Setup `docs` Folder**: Create a `docs` folder in the project root, and inside it, create `index.html`.
     ```html
     <!DOCTYPE html>
     <html>
@@ -106,7 +104,7 @@ Create the `hw7-swagger` branch from `hw6-email-and-images` and perform this tas
 
     </html>
     ```
-5.  Create `docs/openapi.yaml` file with the following content:
+5.  **Initialize `docs/openapi.yaml`**: Create this file with the base OpenAPI specification.
     ```yaml
     openapi: 3.1.0
     info:
@@ -130,39 +128,91 @@ Create the `hw7-swagger` branch from `hw6-email-and-images` and perform this tas
           type: http
           scheme: bearer
     ```
-    You can see your changes by running `npm run preview-docs` command.
+    You can preview your documentation locally by running: `npm run preview-docs`
 
-### Step 3: Documentation Structure
-Create a `swagger` folder. Inside this folder, add two folders: `components` and `paths`. In the `components` folder, store parts of entities such as responses or entity descriptions. In the `paths` folder, store documentation according to the path structure. For example, for the `GET /contacts/:contactId` route, the corresponding file will be `/swagger/paths/contacts/{id}/get.yaml`.
+### 2. Documentation Structure
 
-### Step 4: Document `GET /contacts/:contactId`
-Add documentation for the `GET /contacts/:contactId` route to the corresponding file. Its content should include:
-- `tags` — The tag this endpoint belongs to (e.g., Contacts).
-- `summary` — Short description of the endpoint.
-- `operationId` — Unique operation ID.
-- `description` — More detailed description.
-- `security` — Indicate that we use authentication with Bearer token.
-- `parameters` — Request parameters (for this endpoint, the path parameter `:contactId`).
-- `responses` — Response options:
-    - 200 Successful response.
-    - 404 Not Found response.
-Add the link to this endpoint in the `./docs/openapi.yaml` file.
+API endpoint and component definitions are organized within a `swagger` folder:
 
-### Step 5: Document Other Endpoints
-Using the same principle, add documentation for the following endpoints:
-- `GET /contacts`
-- `PATCH /contacts/:contactId`
-- `DELETE /contacts/:contactId`
-- `POST /contacts`
-Remember to include query parameters for `GET /contacts` and body descriptions for requests containing them.
+```
+swagger/
+├── components/           # Reusable components (schemas, responses)
+└── paths/               # API endpoint definitions
+    ├── contacts/           # Example: Contact related endpoints
+    │   ├── get.yaml     # GET /contacts
+    │   ├── post.yaml    # POST /contacts
+    │   └── {id}/
+    │       ├── get.yaml # GET /contacts/:id
+    │       ├── patch.yaml # PATCH /contacts/:id
+    │       └── delete.yaml # DELETE /contacts/:id
+    └── auth/               # Example: Authentication related endpoints
+        ├── register.yaml # POST /auth/register
+        ├── login.yaml    # POST /auth/login
+        └── logout.yaml   # POST /auth/logout
+```
 
-### Step 6 (Optional): Document Authentication Endpoints
-Optionally, write documentation for authentication endpoints.
+### 3. Documenting API Endpoints
 
-### Step 7: Integrate Swagger UI
-Add a separate route `/api-docs` and display the documentation using the `swagger-ui-express` package.
+To add documentation for an API endpoint, create a corresponding YAML file in the `swagger/paths/` directory based on the path structure. For example, for the `GET /contacts/:contactId` route, the file would be `/swagger/paths/contacts/{id}/get.yaml`.
 
-### Step 8: Deploy to Render.com
-Change the branch for project deployment on render.com to `hw7-swagger`. Ensure the changes are successfully deployed.
+Each endpoint documentation should include:
 
-This task will help you create useful and informative documentation for your API. Good luck with completing the task! 🚀
+*   `tags` — The tag this endpoint belongs to (e.g., `Contacts`).
+*   `summary` — A brief description of the endpoint.
+*   `operationId` — A unique identifier for the operation.
+*   `description` — A more detailed explanation.
+*   `security` — Authentication details (e.g., `Bearer token` for `bearerAuth`).
+*   `parameters` — Request parameters (path, query, header, cookie).
+*   `responses` — Possible responses (e.g., 200 Successful, 404 Not Found).
+
+**Example Endpoint Definition:**
+
+```yaml
+tags:
+  - Contacts
+summary: Get contact by ID
+operationId: getContactById
+description: Retrieve a specific contact by its unique identifier
+security:
+  - bearerAuth: []
+parameters:
+  - name: contactId
+    in: path
+    required: true
+    schema:
+      type: string
+    description: Contact unique identifier
+responses:
+  '200':
+    description: Contact found successfully
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/Contact'
+  '404':
+    description: Contact not found
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/Error'
+```
+
+Document the following endpoints using this principle:
+
+*   `GET /contacts` (including query parameters for pagination, limit, and favorite status)
+*   `PATCH /contacts/:contactId`
+*   `DELETE /contacts/:contactId`
+*   `POST /contacts` (including body descriptions for requests)
+*   **(Optional)** Authentication endpoints: `POST /api/auth/register`, `POST /api/auth/login`, `POST /api/auth/send-reset-email`, `POST /api/auth/reset-pwd`, `POST /api/auth/logout`.
+
+### 4. Accessing Interactive Documentation
+
+Integrate Swagger UI to display the documentation. A dedicated route `/api-docs` should be added to your application to serve the interactive documentation.
+
+### 5. Deployment
+
+The application and its documentation are configured for deployment on Render.com. Ensure the project is deployed from the `hw7-swagger` branch for the documentation to be accessible.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
