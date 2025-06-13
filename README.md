@@ -1,6 +1,6 @@
-# Contact Management API with Email and Image Upload
+# Contact Management API with Swagger Documentation
 
-This project is a REST API that includes user authentication, password reset functionality, and contact management features. It integrates with Brevo email service and Cloudinary image upload service.
+This project is a REST API that includes user authentication, password reset functionality, contact management features, and comprehensive API documentation using Swagger/OpenAPI. It integrates with Brevo email service and Cloudinary image upload service.
 
 ## 🚀 Features
 
@@ -10,6 +10,8 @@ This project is a REST API that includes user authentication, password reset fun
 - Contact management (CRUD operations)
 - Photo upload and management (Cloudinary integration)
 - Email sending (Brevo SMTP integration)
+- **Comprehensive API documentation with Swagger/OpenAPI**
+- **Interactive API documentation with ReDoc and Swagger UI**
 
 ## 📋 Requirements
 
@@ -23,7 +25,7 @@ This project is a REST API that includes user authentication, password reset fun
 1. Clone the project:
 ```bash
 git clone <repository-url>
-cd nodejs-hw-06
+cd nodejs-hw-07
 ```
 
 2. Install dependencies:
@@ -70,9 +72,62 @@ npm start
 
 ## 📚 API Documentation
 
-### Authentication Endpoints
+### Interactive Documentation
 
-#### User Registration
+The API provides multiple ways to access documentation:
+
+1. **Swagger UI**: Visit `/api-docs` for interactive API documentation
+2. **ReDoc**: Run `npm run preview-docs` to view styled documentation
+3. **OpenAPI Specification**: Available at `/docs/openapi.yaml`
+
+### Documentation Setup
+
+This project uses the following tools for API documentation:
+
+- **@redocly/cli**: For generating and previewing documentation
+- **swagger-ui-express**: For serving interactive Swagger UI
+- **OpenAPI 3.1.0**: Specification format
+
+#### Available Scripts
+
+```bash
+# Build documentation
+npm run build-docs
+
+# Preview documentation locally
+npm run preview-docs
+
+# Start the server
+npm start
+```
+
+### Documentation Structure
+
+```
+docs/
+├── openapi.yaml          # Main OpenAPI specification
+├── swagger.json          # Generated JSON specification
+└── index.html            # ReDoc HTML template
+
+swagger/
+├── components/           # Reusable components (schemas, responses)
+└── paths/               # API endpoint definitions
+    ├── contacts/
+    │   ├── get.yaml     # GET /contacts
+    │   ├── post.yaml    # POST /contacts
+    │   └── {id}/
+    │       ├── get.yaml # GET /contacts/:id
+    │       ├── patch.yaml # PATCH /contacts/:id
+    │       └── delete.yaml # DELETE /contacts/:id
+    └── auth/
+        ├── register.yaml # POST /auth/register
+        ├── login.yaml    # POST /auth/login
+        └── logout.yaml   # POST /auth/logout
+```
+
+## 🔐 Authentication Endpoints
+
+### User Registration
 ```http
 POST /api/auth/register
 Content-Type: application/json
@@ -84,7 +139,7 @@ Content-Type: application/json
 }
 ```
 
-#### User Login
+### User Login
 ```http
 POST /api/auth/login
 Content-Type: application/json
@@ -95,7 +150,7 @@ Content-Type: application/json
 }
 ```
 
-#### Send Password Reset Email
+### Send Password Reset Email
 ```http
 POST /api/auth/send-reset-email
 Content-Type: application/json
@@ -105,7 +160,7 @@ Content-Type: application/json
 }
 ```
 
-#### Reset Password
+### Reset Password
 ```http
 POST /api/auth/reset-pwd
 Content-Type: application/json
@@ -116,15 +171,32 @@ Content-Type: application/json
 }
 ```
 
-#### Logout
+### Logout
 ```http
 POST /api/auth/logout
 Authorization: Bearer <access-token>
 ```
 
-### Contact Management Endpoints
+## 📞 Contact Management Endpoints
 
-#### Create Contact (with Photo)
+### Get All Contacts
+```http
+GET /api/contacts
+Authorization: Bearer <access-token>
+```
+
+**Query Parameters:**
+- `page` (optional): Page number for pagination
+- `limit` (optional): Number of contacts per page
+- `favorite` (optional): Filter by favorite status (true/false)
+
+### Get Contact by ID
+```http
+GET /api/contacts/:contactId
+Authorization: Bearer <access-token>
+```
+
+### Create Contact (with Photo)
 ```http
 POST /api/contacts
 Authorization: Bearer <access-token>
@@ -138,7 +210,7 @@ Content-Type: multipart/form-data
 }
 ```
 
-#### Update Contact (with Photo)
+### Update Contact (with Photo)
 ```http
 PATCH /api/contacts/:contactId
 Authorization: Bearer <access-token>
@@ -146,8 +218,16 @@ Content-Type: multipart/form-data
 
 {
     "name": "Updated Name",
+    "email": "updated@example.com",
+    "phone": "0987654321",
     "photo": <file>
 }
+```
+
+### Delete Contact
+```http
+DELETE /api/contacts/:contactId
+Authorization: Bearer <access-token>
 ```
 
 ## 🔐 Security
@@ -157,6 +237,7 @@ Content-Type: multipart/form-data
 - Password reset tokens are valid for 5 minutes
 - Passwords are hashed before storage
 - All API endpoints (except registration and login) require authentication
+- Bearer token authentication for protected routes
 
 ## 📧 Email Template
 
@@ -190,6 +271,56 @@ npm test
 # Run specific test file
 npm test -- <test-file-name>
 ```
+
+## 📖 Documentation Development
+
+### Adding New Endpoints
+
+1. Create a new YAML file in `swagger/paths/` following the naming convention
+2. Define the endpoint with proper OpenAPI 3.1.0 specification
+3. Include tags, summary, operationId, description, security, parameters, and responses
+4. Reference the new path in `docs/openapi.yaml`
+
+### Example Endpoint Definition
+
+```yaml
+tags:
+  - Contacts
+summary: Get contact by ID
+operationId: getContactById
+description: Retrieve a specific contact by its unique identifier
+security:
+  - bearerAuth: []
+parameters:
+  - name: contactId
+    in: path
+    required: true
+    schema:
+      type: string
+    description: Contact unique identifier
+responses:
+  '200':
+    description: Contact found successfully
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/Contact'
+  '404':
+    description: Contact not found
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas/Error'
+```
+
+## 🚀 Deployment
+
+The application is configured for deployment on Render.com with the following settings:
+
+- **Branch**: `hw7-swagger`
+- **Build Command**: `npm install`
+- **Start Command**: `npm start`
+- **Environment**: Node.js
 
 ## 📝 License
 
