@@ -209,10 +209,4 @@ Document the following endpoints using this principle:
 
 Integrate Swagger UI to display the documentation. A dedicated route `/api-docs` should be added to your application to serve the interactive documentation.
 
-### 5. Deployment
 
-The application and its documentation are configured for deployment on Render.com. Ensure the project is deployed from the `hw7-swagger` branch for the documentation to be accessible.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
