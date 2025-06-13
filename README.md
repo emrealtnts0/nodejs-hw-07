@@ -162,7 +162,4 @@ Optionally, write documentation for authentication endpoints.
 ### Step 7: Integrate Swagger UI
 Add a separate route `/api-docs` and display the documentation using the `swagger-ui-express` package.
 
-### Step 8: Deploy to Render.com
-Change the branch for project deployment on render.com to `hw7-swagger`. Ensure the changes are successfully deployed.
 
-This task will help you create useful and informative documentation for your API. Good luck with completing the task! 🚀
