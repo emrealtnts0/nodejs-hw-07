@@ -1,3 +1,30 @@
+<h1 align="center">NODEJS-HW-07</h1>
+
+<p align="center">Empowering Secure Connections, Simplifying User Management with Comprehensive API Documentation</p>
+
+<p align="center">
+  <!-- Dynamic badges - You may need to customize these for your specific GitHub repository -->
+  <img src="https://img.shields.io/github/last-commit/emrealtnts0/nodejs-hw-07?color=blue&label=last%20commit" alt="Last Commit">
+  <img src="https://img.shields.io/github/languages/percentage/emrealtnts0/nodejs-hw-07/javascript?color=orange&label=javascript" alt="JavaScript Percentage">
+  <img src="https://img.shields.io/github/languages/count/emrealtnts0/nodejs-hw-07?color=green&label=languages" alt="Languages Count">
+</p>
+
+<p align="center">Built with the tools and technologies:</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js">
+  <img src="https://img.shields.io/badge/JSON-000000?style=for-the-badge&logo=json&logoColor=white" alt="JSON">
+  <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white" alt="Markdown">
+  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="npm">
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
+  <img src="https://img.shields.io/badge/.env-ECD53F?style=for-the-badge&logo=dot-env&logoColor=black" alt=".env">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/Nodemon-76D04B?style=for-the-badge&logo=nodemon&logoColor=white" alt="Nodemon">
+  <img src="https://img.shields.io/badge/Cloudinary-3399FF?style=for-the-badge&logo=cloudinary&logoColor=white" alt="Cloudinary">
+  <img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint">
+  <img src="https://img.shields.io/badge/YAML-CB171E?style=for-the-badge&logo=yaml&logoColor=white" alt="YAML">
+</p>
+
 # Contact Management API with Swagger Documentation
 
 This project is a REST API that includes user authentication, password reset functionality, contact management features, and comprehensive API documentation using Swagger/OpenAPI. It integrates with Brevo email service and Cloudinary image upload service.
