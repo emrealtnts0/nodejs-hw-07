@@ -324,4 +324,4 @@ The application is configured for deployment on Render.com with the following se
 
 ## 📝 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. 
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
